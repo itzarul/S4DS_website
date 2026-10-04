@@ -71,9 +71,9 @@ function canonical(node) {
 test('React sections retain the reference DOM, content, SVG geometry, and asset references', async () => {
   const React = require('react');
   const { renderToStaticMarkup } = require('react-dom/server');
-  const { StoryExperience } = await load('/src/pages/Home/StoryExperience.tsx');
+  const { HomeSequence } = await load('/src/pages/Home/HomeSequence.tsx');
   const { Footer } = await load('/src/pages/Home/Footer/Footer.tsx');
-  const current = new JSDOM(renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement(StoryExperience), React.createElement(Footer)))).window.document;
+  const current = new JSDOM(renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement(HomeSequence), React.createElement(Footer)))).window.document;
   const reference = new JSDOM(fs.readFileSync(path.join(__dirname, 'fixtures/reference-home.html'), 'utf8')).window.document;
   assert.deepEqual(canonical(current.querySelector('.story-track')), canonical(reference.querySelector('.story-track')));
   assert.deepEqual(canonical(current.querySelector('.connect-footer')), canonical(reference.querySelector('.connect-footer')));
@@ -114,17 +114,17 @@ test('scoped imperative effects dispose listeners, observers, timers, and pendin
 test('Home effects remount without duplicate glare, particle canvases, freeze layers, or missing footer copy', async () => {
   const React = require('react');
   const { renderToStaticMarkup } = require('react-dom/server');
-  const { StoryExperience } = await load('/src/pages/Home/StoryExperience.tsx');
+  const { HomeSequence } = await load('/src/pages/Home/HomeSequence.tsx');
   const { Footer } = await load('/src/pages/Home/Footer/Footer.tsx');
-  window.document.body.innerHTML = '<main><header class="site-header"><div class="brand"></div><button class="menu-toggle"></button><nav class="site-nav"></nav></header>' + renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement(StoryExperience), React.createElement(Footer))) + '</main><div data-join-modal hidden></div>';
-  const { mountHomeExperience } = await load('/src/pages/Home/homeExperience.ts');
+  window.document.body.innerHTML = '<main><header class="site-header"><div class="brand"></div><button class="menu-toggle"></button><nav class="site-nav"></nav></header>' + renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement(HomeSequence), React.createElement(Footer))) + '</main><div data-join-modal hidden></div>';
+  const { mountHomeAnimations } = await load('/src/pages/Home/homeAnimations.ts');
   const previousWarn = console.warn;
   const previousError = console.error;
   console.warn = (...args) => { if (!String(args[0]).startsWith('Using sculpture image fallback:')) previousWarn(...args); };
   console.error = (...args) => { if (!String(args[0]).startsWith('THREE.WebGLRenderer: Error creating WebGL context.')) previousError(...args); };
   try {
     for (let i = 0; i < 2; i++) {
-      const dispose = mountHomeExperience(true);
+      const dispose = mountHomeAnimations(true);
       await Promise.resolve();
       assert.equal(window.document.querySelectorAll('.card-glare').length, 8);
       assert.equal(window.document.querySelectorAll('.space-particles').length, 3);

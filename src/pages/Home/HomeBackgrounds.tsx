@@ -1,4 +1,4 @@
-export function StoryBackgrounds() {
+export function HomeBackgrounds() {
   return (
     <>
       <div className="story-backdrop story-backdrop--hero" aria-hidden="true">

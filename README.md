@@ -1,78 +1,77 @@
 # S4DS Website
 
-## Overview
+TCET S4DS's website features an interactive 3D hero, a scroll-driven memory
+archive, and an animated contact footer. Team, Events, and Gallery are separate
+blank pages ready for their collaborators.
 
-The TCET S4DS website, with an interactive hero, a scroll-driven memory archive,
-and an animated contact footer. Team, Events, and Gallery currently open separate
-blank pages with their own background colors.
+## Stack
 
-## Tech Stack
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- GSAP + ScrollTrigger
-- Lenis
-- Three.js
+- React, TypeScript, Vite, and Tailwind CSS
+- GSAP 3.15.0 with ScrollTrigger and Lenis 1.3.26
+- Three.js 0.180.0
 - ESLint and Prettier
 
-## Getting Started
+## Development
 
 ```sh
 npm install
 npm run dev
 ```
 
-The development server listens on port 3001 and accepts connections from other
-devices on the same local network.
+The development server uses port 3001 and accepts connections from devices on
+the same local network.
 
-## Build
+## Build and Preview
 
 ```sh
 npm run build
-```
-
-## Preview
-
-```sh
 npm run preview
 ```
 
-## Code Quality
+## Checks
 
 ```sh
 npm run lint
-npm run format
+npm run format:check
 npm test
 ```
 
-## Project Structure
+Use `npm run format` to format the source.
 
-- `src/App.tsx` and `src/main.tsx`: application entry and page navigation.
-- `src/components/`: shared navbar, join form, cursor, and page transition.
-- `src/pages/Home/Hero/`: hero UI, scene, opening motion, and freeze effects.
-- `src/pages/Home/Archive/`: archive UI, cards, title motion, and glare.
-- `src/pages/Home/Footer/`: contact UI, typing, butterfly, and Three.js scene.
-- `src/pages/Home/`: shared Hero–Archive scroll composition, ambient effects,
-  text effects, and `homeData.ts` for archive memories and contact information.
-- `src/pages/Team/`, `Events/`, and `Gallery/`: independent blank page components
-  ready for their respective collaborators.
-- `src/lib/`: shared animation dependencies, lifecycle ownership, and runtime types.
-- `src/config.ts`: shared device and rendering quality detection.
-- `src/styles/`: stylesheet entry, shared tokens, and existing cross-feature styles.
-- `public/`: photographs, fonts, audio, and static graphics.
+## Structure
 
-Update Home content in `src/pages/Home/homeData.ts`. Shared navigation links live
-in `src/components/navigation.ts`.
-React UI and shared contracts use TypeScript. The existing mathematical animation
-and shader engines remain JavaScript modules with typed lifecycle boundaries;
-their motion equations, timings, and rendering settings are kept intact.
+```text
+src/
+  App.tsx, main.tsx, config.ts
+  components/       Shared navigation, modal, cursor, and page transition
+  pages/
+    Home/
+      Hero/         Hero UI, scene, and freeze effects
+      Archive/      Archive UI, cards, and glare
+      Footer/       Contact UI, butterfly, and scene
+      text/         Home text effects
+      Home.tsx, HomeSequence.tsx, HomeBackgrounds.tsx
+      homeAnimations.ts, initAnimations.js, homeData.ts
+    Team/           Team.tsx
+    Events/         Events.tsx
+    Gallery/        Gallery.tsx
+  lib/              Shared animation dependencies, lifecycle, and runtime types
+  styles/           Global styles and design tokens
+public/             Images, fonts, audio, and static graphics
+tests/             DOM, lifecycle, navigation, and scroll math checks
+```
 
-`Home.tsx` owns mounting and cleanup. `StoryExperience.tsx` preserves the coupled
-Hero–Archive DOM, and `engineMounts.js` preserves the effects' initialization order.
-Scene and shader modules stay separate beside the feature that owns them.
-The shared stylesheet cascade is retained in `src/styles/globals.css`.
+## Collaboration
 
-The join form currently validates locally and shows a success message. It does
-not submit requests to a server.
+Work inside the folder for your page. Home's archive and contact content lives
+in `homeData.ts`; shared navigation links live in `components/navigation.ts`.
+Fonts and brand colors are defined in `styles/site.css` and `styles/tokens.css`.
+
+`HomeSequence` keeps Hero and Archive in one scroll composition.
+`homeAnimations.ts` owns Home's animation lifecycle, and `initAnimations.js`
+lists its initialization order. Scene and shader files remain beside the
+feature that uses them. React UI uses TypeScript; animation and rendering
+modules also use JavaScript.
+
+The Join form validates locally and displays a confirmation. It does not
+submit requests to a server.

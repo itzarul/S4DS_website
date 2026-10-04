@@ -12,3 +12,9 @@ Thumbs.db
 screenshots/
 test-renders/
 coverage/
+.vscode/
+debug-captures/
+migration-screenshots/
+*.tsbuildinfo
+*.tmp
+*.temp

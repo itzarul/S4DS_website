@@ -1,13 +1,13 @@
 import { Hero } from './Hero/Hero';
 import { Archive } from './Archive/Archive';
-import { StoryBackgrounds } from './StoryBackgrounds';
+import { HomeBackgrounds } from './HomeBackgrounds';
 import { ArchiveCard } from './Archive/ArchiveCard';
 import { archiveMemories } from './homeData';
-export function StoryExperience() {
+export function HomeSequence() {
   return (
     <section className="story-track" id="home" aria-label="S4DS opening sequence">
       <div className="story-stage">
-        <StoryBackgrounds />
+        <HomeBackgrounds />
         <Archive />
         <div className="deck-position">
           <div className="story-camera">

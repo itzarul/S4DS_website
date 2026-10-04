@@ -1,5 +1,5 @@
 import { EffectScope } from '../../lib/effectScope';
-import { homeMounts } from './engineMounts';
+import { homeMounts } from './initAnimations';
 
 const engineGlobals = [
   'HeroIntroLock',
@@ -22,7 +22,7 @@ const engineGlobals = [
   'stopHeroDecode',
 ] as const;
 
-export function mountHomeExperience(skipIntro: boolean) {
+export function mountHomeAnimations(skipIntro: boolean) {
   const scope = new EffectScope(skipIntro);
   const previous = new Map(engineGlobals.map((key) => [key, Reflect.get(window, key)]));
   const bodyChildren = new Set(document.body.children);
