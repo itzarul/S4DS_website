@@ -1,77 +1,105 @@
 # S4DS Website
 
-TCET S4DS's website features an interactive 3D hero, a scroll-driven memory
-archive, and an animated contact footer. Team, Events, and Gallery are separate
-blank pages ready for their collaborators.
+TCET S4DS website featuring an interactive 3D hero, scroll-driven archive,
+and animated contact experience.
+
+The project is structured into independent Home, Team, Events, and Gallery
+pages for collaborative development.
 
 ## Stack
 
-- React, TypeScript, Vite, and Tailwind CSS
-- GSAP 3.15.0 with ScrollTrigger and Lenis 1.3.26
-- Three.js 0.180.0
-- ESLint and Prettier
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- GSAP + ScrollTrigger
+- Lenis
+- Three.js
+- ESLint + Prettier
 
 ## Development
 
-```sh
+```bash
 npm install
 npm run dev
 ```
 
-The development server uses port 3001 and accepts connections from devices on
-the same local network.
+The development server runs on port `3001`.
 
-## Build and Preview
+## Build
 
-```sh
+```bash
 npm run build
 npm run preview
 ```
 
 ## Checks
 
-```sh
+```bash
 npm run lint
 npm run format:check
 npm test
 ```
 
-Use `npm run format` to format the source.
+Format the source with:
+
+```bash
+npm run format
+```
 
 ## Structure
 
 ```text
 src/
-  App.tsx, main.tsx, config.ts
-  components/       Shared navigation, modal, cursor, and page transition
+  App.tsx
+  main.tsx
+  config.ts
+
+  components/
+    Shared navigation, modal, cursor and page transition
+
   pages/
     Home/
-      Hero/         Hero UI, scene, and freeze effects
-      Archive/      Archive UI, cards, and glare
-      Footer/       Contact UI, butterfly, and scene
-      text/         Home text effects
-      Home.tsx, HomeSequence.tsx, HomeBackgrounds.tsx
-      homeAnimations.ts, initAnimations.js, homeData.ts
-    Team/           Team.tsx
-    Events/         Events.tsx
-    Gallery/        Gallery.tsx
-  lib/              Shared animation dependencies, lifecycle, and runtime types
-  styles/           Global styles and design tokens
-public/             Images, fonts, audio, and static graphics
-tests/             DOM, lifecycle, navigation, and scroll math checks
+      Hero/       Hero UI, Three.js scene and freeze effects
+      Archive/    Archive UI, cards and interactions
+      Footer/     Contact UI and Three.js scene
+      text/       Home text effects
+
+    Team/
+    Events/
+    Gallery/
+
+  lib/
+    Shared animation dependencies, lifecycle utilities and runtime types
+
+  styles/
+    Global styles and design tokens
+
+public/
+  Images, fonts, audio and static graphics
+
+tests/
+  DOM, lifecycle, navigation and scroll-math checks
 ```
 
 ## Collaboration
 
-Work inside the folder for your page. Home's archive and contact content lives
-in `homeData.ts`; shared navigation links live in `components/navigation.ts`.
-Fonts and brand colors are defined in `styles/site.css` and `styles/tokens.css`.
+Keep page-specific components, styles and data inside the relevant page folder.
 
-`HomeSequence` keeps Hero and Archive in one scroll composition.
-`homeAnimations.ts` owns Home's animation lifecycle, and `initAnimations.js`
-lists its initialization order. Scene and shader files remain beside the
-feature that uses them. React UI uses TypeScript; animation and rendering
-modules also use JavaScript.
+- Home: `src/pages/Home/`
+- Team: `src/pages/Team/`
+- Events: `src/pages/Events/`
+- Gallery: `src/pages/Gallery/`
 
-The Join form validates locally and displays a confirmation. It does not
-submit requests to a server.
+Shared navigation lives in `src/components/navigation.ts`.
+
+Home archive and contact content lives in `src/pages/Home/homeData.ts`.
+
+`HomeSequence` keeps Hero and Archive within the same scroll composition.
+`homeAnimations.ts` manages the Home animation lifecycle, while
+`initAnimations.js` defines initialization order.
+
+React UI is written in TypeScript. Complex animation and rendering modules
+remain in JavaScript where appropriate.
+
+The Join form currently validates locally and displays a confirmation; it does
+not submit data to a server.
