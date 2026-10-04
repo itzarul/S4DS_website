@@ -2,7 +2,6 @@ import { gsap, ScrollTrigger, Lenis } from './gsap';
 
 type Cleanup = () => void;
 
-/** Owns imperative effects without changing their motion equations or frame cadence. */
 export class EffectScope {
   disposed = false;
   skipIntro = false;
@@ -39,8 +38,7 @@ export class EffectScope {
     const scope = this;
     const nativeAdd = EventTarget.prototype.addEventListener;
     const nativeRemove = EventTarget.prototype.removeEventListener;
-    // Legacy engines register listeners on many DOM nodes. Capture only calls
-    // made inside this engine turn, restoring the native API before returning.
+
     EventTarget.prototype.addEventListener = function (type, listener, options) {
       if (!listener) return;
       const capture = typeof options === 'boolean' ? options : Boolean(options?.capture);

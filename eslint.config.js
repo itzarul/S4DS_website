@@ -9,7 +9,6 @@ export default tseslint.config(
       'node_modules/**',
       'dist/**',
       '.backups/**',
-      '.impeccable/**',
       'public/**',
       'vendor/**',
       'footer-scene/**',
