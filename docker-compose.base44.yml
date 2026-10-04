@@ -1,0 +1,18 @@
+services:
+  web:
+    image: node:22
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:5173"
+    environment:
+      - VITE_APP_TITLE=TCET S4DS Club Official Website
+      - VITE_APP_ENV=development
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:5173/"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s

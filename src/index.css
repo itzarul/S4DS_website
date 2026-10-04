@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #3585f6; /* Light Blue from image */
+  --color-blue-500: #012f7c; /* Dark Blue from image */
+  --color-blue-600: #00459D;
+  --color-blue-700: #003680;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+}
+@layer base {
+  :root {
+    --color-bg: #252525; /* Dark Grey background from image */
+    --color-card: #000000; /* Black from image */
+    --color-card-border: rgba(255, 255, 255, 0.1);
+    --color-primary: #3585f6; /* Light Blue */
+    --color-accent: #012f7c; /* Dark Blue */
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background-color: var(--color-bg);
+    color: #FAFAFA;
+  }
+}
+
+/* Custom Font Typography Utility Classes */
+.font-heading {
+  font-family: 'Chakra Petch', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.font-subheading {
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-weight: 400 !important;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-card);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Utilities & Glassmorphism */
+.glass-panel {
+  background: rgba(24, 24, 27, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(28, 28, 32, 0.85);
+  border-color: rgba(53, 133, 246, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -10px rgba(53, 133, 246, 0.25);
+}
+
+/* Gradient Text Utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FDE047 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Grid & Noise Backgrounds */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.glow-blue {
+  box-shadow: 0 0 50px -10px rgba(53, 133, 246, 0.3);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 50px -10px rgba(1, 47, 124, 0.3);
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Terminal & Cyber CRT Overlay Utilities */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(1, 47, 124, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(1, 47, 124, 0.3) 1px, transparent 1px);
+}
+
+.bg-cyber-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(53, 133, 246, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53, 133, 246, 0.15) 1px, transparent 1px);
+}
+
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+.crt-vignette {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+/* ===== TEAM PAGE — Cyber/Digital Brutalism (scoped to /team only) ===== */
+.team-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(1, 47, 124, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(1, 47, 124, 0.28) 1px, transparent 1px);
+}
+
+.team-grid-dense {
+  background-size: 16px 16px;
+  background-image:
+    linear-gradient(to right, rgba(53, 133, 246, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53, 133, 246, 0.12) 1px, transparent 1px);
+}
+
+.team-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.32),
+    rgba(0, 0, 0, 0.32) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+.team-vignette {
+  box-shadow: inset 0 0 130px rgba(0, 0, 0, 0.92);
+  pointer-events: none;
+}
+
+/* RGB-split glitch flicker for the hero heading */
+@keyframes team-glitch {
+  0%, 88%, 100% { text-shadow: 0 0 transparent; }
+  90% { text-shadow: 2px 0 #3585f6, -2px 0 #012f7c; }
+  92% { text-shadow: -2px 0 #3585f6, 2px 0 #012f7c; }
+  94% { text-shadow: 2px 0 #3585f6, -2px 0 #012f7c; }
+  96% { text-shadow: 0 0 transparent; }
+}
+
+.team-glitch {
+  animation: team-glitch 6s infinite;
+}
+
+/* ===== TEAM PAGE TYPOGRAPHY =====
+   Display  -> Nippo      (headings, member names)
+   Primary  -> Technor    (system labels, roles, buttons, UI chrome)
+   Body     -> Arsenal SC (running text, quotes, taglines)
+   Scoped to /team so the rest of the site keeps Chakra Petch / IBM Plex Mono / Inter. */
+.team-display {
+  font-family: 'Nippo', 'Chakra Petch', sans-serif !important;
+}
+
+.team-primary {
+  font-family: 'Technor', 'IBM Plex Mono', monospace !important;
+}
+
+.team-body {
+  font-family: 'Arsenal SC', 'Inter', sans-serif !important;
+}
+
+/* Team-page UI chrome styled with Tailwind's font-mono (hero pill, year switcher,
+   dropdown) resolves to Technor — the page's primary font — instead of the
+   system mono stack. */
+.team-primary .font-mono {
+  font-family: 'Technor', 'IBM Plex Mono', monospace !important;
+}
+
+/* ===== TEAM CARD HOVER FOCUS =====
+   Hovering a card expands it while its grid siblings contract slightly, so the
+   attention lands on one member without the grid reflowing — only transforms change,
+   never a grid track.
+
+   The hover transform lives on the inner .team-card box while the GSAP scroll-reveal
+   animates the outer shell that wraps it. They must stay on separate elements: GSAP
+   folds the standalone scale/translate of whatever it animates into its own matrix,
+   so a shared element would bake a hover-time scale into the card permanently. */
+.team-card {
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease;
+}
+
+/* Tailwind v4 only applies its own hover: variants on true hover devices; match that. */
+@media (hover: hover) {
+  .team-card-grid:has(.team-card:hover) .team-card:not(:hover) {
+    transform: scale(0.965);
+  }
+
+  .team-card-grid .team-card:hover {
+    transform: scale(1.05);
+  }
+
+  /* Lift the whole card, not just the inner box: the grid item is its own stacking
+     context, so an inner z-index would be trapped inside it and the expanded card
+     could paint under the next one. */
+  .team-card-grid > :has(.team-card:hover) {
+    z-index: 20;
+  }
+}
