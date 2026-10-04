@@ -1,0 +1,215 @@
+/* Animation overlays reserve the original, accessible typesetting underneath. */
+[data-text-effect],
+[data-warp-text] {
+  pointer-events: auto;
+}
+.text-fx-active,
+.text-fx-active > span:not(.text-fx-layer) {
+  color: transparent !important;
+}
+.text-fx-layer {
+  position: absolute;
+  inset: 0;
+  display: block !important;
+  width: auto !important;
+  pointer-events: none;
+  color: var(--text-fx-color) !important;
+  text-transform: none;
+  text-align: left;
+  letter-spacing: 0;
+}
+.text-fx-cell {
+  position: absolute;
+  display: block !important;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  transform-origin: left center;
+}
+.text-fx-glyph {
+  display: block;
+  transform-origin: left center;
+}
+.text-fx-cursor {
+  position: absolute;
+  width: 1px;
+  background: currentColor;
+}
+.text-fx-cell--flap {
+  perspective: 380px;
+}
+.text-fx-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: #07101bed;
+  backface-visibility: hidden;
+}
+.text-fx-half > span {
+  position: absolute;
+  left: 0;
+  height: 200%;
+  width: 100%;
+}
+.text-fx-half--top {
+  top: 0;
+}
+.text-fx-half--bottom {
+  bottom: 0;
+}
+.text-fx-half--top > span {
+  top: 0;
+}
+.text-fx-half--bottom > span {
+  bottom: 0;
+}
+.text-fx-half--front {
+  top: 0;
+  z-index: 2;
+  transform-origin: center bottom;
+}
+.text-fx-half--back {
+  bottom: 0;
+  z-index: 3;
+  transform-origin: center top;
+}
+.text-warp-canvas {
+  position: fixed;
+  display: none;
+  z-index: 49;
+  pointer-events: none;
+}
+.text-warp-active > span {
+  visibility: hidden !important;
+}
+.intro-framing {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+.intro-fill,
+.intro-outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.intro-fill {
+  background: #00000073;
+  transform-origin: left center;
+}
+.intro-outline {
+  overflow: visible;
+}
+.saber-reveal {
+  --sweep: 0%;
+  clip-path: inset(0 calc(100% - var(--sweep)) 0 0);
+}
+.saber-reveal--vertical {
+  clip-path: inset(0 0 calc(100% - var(--sweep)) 0);
+}
+.reveal-beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--sweep);
+  width: 2px;
+  background: #e8f7ff;
+  box-shadow: 0 0 9px 2px #66bbff;
+  pointer-events: none;
+}
+.saber-reveal--vertical .reveal-beam {
+  left: 0;
+  right: 0;
+  top: var(--sweep);
+  bottom: auto;
+  height: 2px;
+  width: 100%;
+}
+.saber-reveal--center {
+  clip-path: inset(0 calc((100% - var(--sweep)) / 2));
+}
+.saber-reveal--center .reveal-beam--left {
+  left: calc((100% - var(--sweep)) / 2);
+}
+.saber-reveal--center .reveal-beam--right {
+  left: auto;
+  right: calc((100% - var(--sweep)) / 2);
+}
+.model-arriving {
+  animation: model-signal-lock 650ms linear both;
+}
+@keyframes model-signal-lock {
+  0% {
+    opacity: 0;
+    clip-path: inset(40% 0 55%);
+    transform: translateX(-4px);
+  }
+  12% {
+    opacity: 0.7;
+    clip-path: inset(18% 0 63%);
+    transform: translateX(3px);
+  }
+  23% {
+    opacity: 0.15;
+    clip-path: inset(65% 0 9%);
+    transform: translateX(-2px);
+  }
+  36% {
+    opacity: 0.9;
+    clip-path: inset(0);
+    transform: translateX(0);
+  }
+  44% {
+    opacity: 0.45;
+    clip-path: inset(26% 0 22%);
+    transform: translateX(2px);
+  }
+  60%,
+  100% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateX(0);
+  }
+}
+.deck-note.focus-lock::after {
+  animation: archive-focus-lock 540ms ease-out;
+}
+.deck-dots.has-individual-dots {
+  background-image: none;
+}
+.deck-dots > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  fill: var(--paper);
+  pointer-events: none;
+}
+@keyframes archive-focus-lock {
+  0%,
+  32%,
+  62% {
+    opacity: 0.15;
+    transform: scale(1.035);
+  }
+  18%,
+  48%,
+  80%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-fx-layer,
+  .text-warp-canvas {
+    display: none !important;
+  }
+  .model-arriving,
+  .deck-note.focus-lock::after {
+    animation: none;
+  }
+}

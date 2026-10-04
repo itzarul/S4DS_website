@@ -1,0 +1,19 @@
+:root {
+  --ink: #000;
+  --paper: #e8e8e5;
+  --blue: #3e83f2;
+  --red: #ff243d;
+  --line: #92928e;
+  --muted: #b5b5af;
+  --nippo: Nippo, sans-serif;
+  --tech: Technor, sans-serif;
+  --mono: ArsenalSC, sans-serif;
+}
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-brand: var(--blue);
+  --font-display: var(--nippo);
+  --font-tech: var(--tech);
+  --font-body: var(--mono);
+}

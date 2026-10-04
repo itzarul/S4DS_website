@@ -1,0 +1,43 @@
+.story-backdrop--archive::after {
+  content: '';
+  position: absolute;
+  inset: 60% 0 0;
+  pointer-events: none;
+  background: linear-gradient(transparent, #010308);
+}
+
+.pixel-transition {
+  z-index: 105;
+  opacity: 0;
+  visibility: hidden;
+  background: radial-gradient(ellipse at center, #06283df5, #01050b);
+  contain: strict;
+}
+.pixel-transition canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.page-changing .site-header {
+  transition: none;
+}
+.blank-page {
+  min-height: 100svh;
+}
+.blank-page main {
+  min-height: 100svh;
+}
+.blank-page--team {
+  background: #091b23;
+}
+.blank-page--events {
+  background: #1a1026;
+}
+.blank-page--gallery {
+  background: #08211e;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-transition {
+    display: none;
+  }
+}

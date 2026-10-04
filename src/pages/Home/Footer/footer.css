@@ -1,0 +1,233 @@
+/* Supplied immersive footer, composed around the user's contact reference. */
+.connect-footer {
+  position: relative;
+  isolation: isolate;
+  height: 225svh;
+  background: #010308;
+  color: #f3f5f7;
+}
+.connect-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: clip;
+}
+.connect-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.connect-particles .space-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.connect-world {
+  position: absolute;
+  inset: 7% 0 0;
+  touch-action: pan-y;
+}
+.connect-world canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.connect-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(#010308, transparent 28%),
+    radial-gradient(ellipse at 51% 24%, #037cbd30, #004b8112 38%, transparent 70%);
+}
+.connect-stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 51% 43%, transparent 30%, #0003 70%, #000a);
+}
+.connect-intro {
+  position: absolute;
+  z-index: 2;
+  left: 2.2%;
+  bottom: 27%;
+  width: 25%;
+}
+.connect-kicker {
+  margin: 0 0 1.6vw;
+  font: 400 clamp(16px, 1.65vw, 34px)/1.3 var(--mono);
+  letter-spacing: 0.12em;
+}
+.connect-title {
+  margin: 0;
+  font: 500 clamp(28px, 3.65vw, 76px)/1.4 var(--tech);
+  letter-spacing: 0.025em;
+}
+.connect-title-line {
+  display: block;
+  white-space: nowrap;
+}
+.connect-wordmark {
+  position: absolute;
+  z-index: 2;
+  left: 1.8%;
+  bottom: 0.6%;
+  display: flex;
+  overflow: hidden;
+  font: 500 clamp(120px, 13.8vw, 290px)/0.95 var(--nippo);
+  letter-spacing: -0.025em;
+}
+.connect-wordmark span {
+  display: inline-block;
+}
+.connect-contacts {
+  position: absolute;
+  z-index: 2;
+  left: 75.2%;
+  right: 2.5%;
+  top: 55%;
+  font-style: normal;
+}
+.connect-contacts h3 {
+  width: max-content;
+  font: 500 clamp(22px, 2.6vw, 54px)/1.2 var(--nippo);
+  letter-spacing: 0.075em;
+  color: #f3f5f7;
+  margin: 0 0 1.8vw;
+}
+.connect-typed-char {
+  visibility: inherit;
+}
+.connect-contacts h3 {
+  border-bottom-color: rgb(60 139 186 / var(--typed-progress, 1));
+}
+.connect-typed-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.connect-footer a:focus-visible .connect-typed-char {
+  visibility: visible !important;
+}
+.connect-person + .connect-person {
+  margin-top: 1.4vw;
+}
+.connect-person p {
+  font: 400 clamp(17px, 1.6vw, 32px)/1.3 var(--tech);
+  margin: 0 0 0.45vw;
+}
+.connect-person a {
+  display: inline-block;
+  max-width: 100%;
+  font: 400 clamp(13px, 1.2vw, 25px)/1.45 var(--mono);
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+  transition: color 0.2s;
+}
+.connect-person a:hover,
+.connect-wordmark:hover {
+  color: #9ee8ff;
+}
+.connect-footer a:focus-visible,
+.connect-motion:focus-visible {
+  outline: 2px solid #79dcff;
+  outline-offset: 6px;
+}
+.connect-motion {
+  position: absolute;
+  right: 2.5%;
+  bottom: 2%;
+  z-index: 3;
+  background: transparent;
+  color: #a4c7d8;
+  padding: 12px;
+  font: 400 11px/1.2 var(--tech);
+}
+.connect-world[data-renderer='unavailable']::after {
+  content: '';
+  position: absolute;
+  left: 29%;
+  top: 22%;
+  width: 42%;
+  height: 18%;
+  border: 2px solid #acdeff;
+  border-radius: 50%;
+  box-shadow: 0 0 18px #248dff;
+  transform: rotate(5deg);
+}
+@media (max-width: 1000px) and (min-width: 701px) {
+  .connect-contacts {
+    left: 72%;
+    right: 2%;
+  }
+  .connect-person a {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .connect-title {
+    font-size: 22px;
+  }
+  .connect-person p {
+    font-size: 17px;
+  }
+}
+@media (max-width: 700px) {
+  .connect-footer {
+    height: 230svh;
+  }
+  .connect-stage {
+    height: 100svh;
+  }
+  .connect-intro {
+    display: none;
+  }
+  .connect-contacts {
+    left: 6%;
+    right: 6%;
+    top: 19%;
+  }
+  .connect-contacts h3 {
+    font-size: 14px;
+    margin-bottom: 1.6svh;
+    padding-bottom: 0.5em;
+  }
+  .connect-person p {
+    font-size: clamp(16px, 4.7vw, 22px);
+    margin-bottom: 0.3svh;
+  }
+  .connect-person a {
+    font-size: clamp(13px, 3.8vw, 19px);
+    letter-spacing: 0.025em;
+  }
+  .connect-person + .connect-person {
+    margin-top: 1.5svh;
+  }
+  .connect-world {
+    top: 40%;
+    bottom: 15%;
+  }
+  .connect-wordmark {
+    left: 4%;
+    bottom: 0.8%;
+    font-size: 31.7vw;
+  }
+  .connect-motion {
+    bottom: 15%;
+    right: 3%;
+    font-size: 9px;
+    padding: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .connect-footer {
+    height: 100svh;
+  }
+  .connect-footer * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

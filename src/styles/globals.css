@@ -1,0 +1,30 @@
+@layer theme, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'lenis/dist/lenis.css';
+@import './tokens.css';
+@import './site.css';
+@import '../pages/Home/text/text-effects.css';
+@import './interactions.css';
+@import '../pages/Home/Footer/footer.css';
+@import './navigation.css';
+@source '../';
+
+html {
+  scrollbar-gutter: stable;
+}
+html.scroll-held {
+  overflow: hidden !important;
+}
+html.intro-pending .hero-layout,
+html.intro-pending .site-header,
+html.intro-pending .story-backdrop--hero {
+  opacity: 0 !important;
+}
+html.intro-pending .hero-frame {
+  border-color: transparent !important;
+  background: transparent !important;
+}
+.connect-intro .text-fx-active .connect-typed-char {
+  color: transparent !important;
+}

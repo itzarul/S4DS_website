@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.idea/
+.backups/
+.impeccable/
+.codex/
+.DS_Store
+Thumbs.db
+*.log
+.env.local
+.env.*.local
+screenshots/
+test-renders/
+coverage/

@@ -1,0 +1,268 @@
+.cursor-fluid {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.cursor-fluid {
+  z-index: 110;
+  inset: auto;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 360px;
+  opacity: 0;
+  background: #165dff0d;
+  backdrop-filter: grayscale(1) invert(1) sepia(1) saturate(3) hue-rotate(170deg);
+  -webkit-backdrop-filter: grayscale(1) invert(1) sepia(1) saturate(3) hue-rotate(170deg);
+  mask: url(#cursor-blob-mask);
+  -webkit-mask: url(#cursor-blob-mask);
+}
+.signal-cursor {
+  display: none !important;
+}
+.signal-cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-origin: 12.5% 8.929%;
+  filter: drop-shadow(0 1px 1px #010918) drop-shadow(0 0 3px #035dffb0);
+  transition:
+    transform 220ms ease,
+    filter 220ms ease;
+}
+.signal-cursor.is-interactive svg {
+  transform: rotate(-8deg) scale(1.16);
+  filter: brightness(1.4) drop-shadow(0 1px 1px #010918) drop-shadow(0 0 5px #11aaffc0);
+}
+.signal-cursor.is-pressed svg {
+  transform: scale(0.9);
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.signal-pointer,
+  html.signal-pointer * {
+    cursor:
+      url('/assets/cursor-arrow.svg') 5 4,
+      default !important;
+  }
+  html.signal-pointer.pointer-hover,
+  html.signal-pointer.pointer-hover * {
+    cursor:
+      url('/assets/cursor-arrow-hover.svg') 5 4,
+      pointer !important;
+  }
+  html.signal-pointer.pointer-pressed,
+  html.signal-pointer.pointer-pressed * {
+    cursor:
+      url('/assets/cursor-arrow-pressed.svg') 8 8,
+      pointer !important;
+  }
+}
+/* React Bits GlareHover's diagonal sweep, adapted to the existing 3D faces. */
+.deck-settled .story-card {
+  pointer-events: auto;
+}
+.card-glare {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
+}
+.card-glare-light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -30deg,
+    transparent 60%,
+    rgba(255, 255, 255, 0.38) 70%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
+  background-position: -100% -100%;
+  transition: background-position 800ms ease;
+  pointer-events: none;
+}
+.glare-running .card-glare-light {
+  background-position: 100% 100%;
+}
+.card-glare--hero {
+  transform: translateZ(3px);
+  backface-visibility: hidden;
+}
+body:not(.deck-settled) .card-glare--hero {
+  visibility: hidden;
+}
+.join-button {
+  isolation: isolate;
+  transition:
+    background 350ms ease,
+    color 350ms ease,
+    box-shadow 350ms ease;
+}
+.join-button > span {
+  position: relative;
+  z-index: 1;
+  transition: letter-spacing 350ms ease;
+}
+.join-button::before {
+  transition:
+    transform 350ms ease,
+    filter 350ms ease;
+}
+.join-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(90deg, #03182d, #07111e);
+  border-inline: 1px solid #8bdfff;
+  clip-path: inset(0 50%);
+  transition: clip-path 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.join-button:is(:hover, :focus-visible) {
+  color: #d7f6ff;
+  background: #479bff;
+  box-shadow:
+    0 0 22px #3e83f24d,
+    inset 0 0 0 1px #87dfff;
+}
+.join-button:is(:hover, :focus-visible)::after {
+  clip-path: inset(0);
+}
+.join-button:is(:hover, :focus-visible)::before {
+  transform: scale(1.045, 1.16);
+  filter: drop-shadow(0 0 4px #56c7ff);
+}
+.join-button:is(:hover, :focus-visible) > span {
+  letter-spacing: 0.055em;
+}
+.join-button:active::before {
+  transform: scale(1.01);
+}
+.freeze-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 106;
+  pointer-events: none;
+  outline: none;
+  opacity: var(--freeze-reveal, 0);
+}
+.freeze-dialog[hidden] {
+  display: none;
+}
+.freeze-dialog button {
+  pointer-events: auto;
+  position: absolute;
+  border: 0;
+  background: #020916a6;
+  color: #b9eaff;
+  padding: 9px 12px;
+  font: 11px/1.2 var(--tech);
+  letter-spacing: 0.1em;
+}
+.freeze-dialog button:focus-visible {
+  outline: 1px solid #42eaff;
+  outline-offset: 3px;
+}
+.freeze-dialog .freeze-exit {
+  bottom: 1.3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: clamp(13px, 1.05vw, 18px);
+  padding: 12px 16px;
+}
+.freeze-sound {
+  right: 2.3vw;
+  top: 2.4vh;
+}
+.freeze-transitioning .story-stage {
+  scale: calc(1 - var(--freeze-charge, 0) * 0.055);
+  translate: var(--freeze-tear, 0px) 0;
+  filter: brightness(calc(1 - var(--freeze-charge, 0) * 0.58));
+  transform-origin: 50% 50%;
+  opacity: calc(1 - var(--freeze-reveal, 0));
+}
+.freeze-transitioning .site-header {
+  opacity: calc(1 - var(--freeze-reveal, 0));
+  filter: brightness(calc(1 - var(--freeze-charge, 0) * 0.58));
+}
+.freeze-liquid {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 104;
+  pointer-events: none;
+  background: #050014;
+}
+.hero-frozen.liquid-ready .freeze-liquid {
+  display: block;
+  opacity: var(--freeze-reveal, 0);
+  scale: calc(1.035 - var(--freeze-reveal, 0) * 0.035);
+}
+.hero-frozen.liquid-ready .cursor-fluid {
+  opacity: 0 !important;
+}
+.hero-sculpture.freeze-charging .sculpture-hint {
+  opacity: 1;
+  color: #a3e9ff;
+}
+@media (hover: hover) and (pointer: fine) {
+  html.hero-frozen,
+  html.hero-frozen * {
+    cursor:
+      url('/assets/cursor-freeze.svg') 48 48,
+      crosshair !important;
+  }
+}
+@media (max-width: 639px) {
+  .freeze-dialog .freeze-exit {
+    bottom: 1vh;
+    font-size: 12px;
+    padding: 12px 8px;
+    letter-spacing: 0.06em;
+  }
+  .freeze-sound {
+    font-size: 9px !important;
+    right: 4vw;
+    top: 9vh;
+  }
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .signal-cursor,
+  .cursor-fluid {
+    display: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .freeze-liquid {
+    animation: none !important;
+  }
+  .freeze-transitioning .story-stage,
+  .hero-frozen.liquid-ready .freeze-liquid {
+    scale: 1;
+  }
+  .card-glare {
+    display: none;
+  }
+  .story-card-face::after,
+  .hero-card-symbol::after,
+  .hero-card-back::after {
+    display: none;
+  }
+  .join-button,
+  .join-button::after,
+  .join-button::before,
+  .join-button > span {
+    transition: none;
+  }
+}

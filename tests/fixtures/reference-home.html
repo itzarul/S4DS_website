@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="S4DS is a student community exploring data science, AI, experiments, and what is possible next."
+    />
+    <title>S4DS | Data Science + AI</title>
+    <link rel="icon" href="logo.png" type="image/png" />
+    <script src="render-quality.js"></script>
+    <script>
+      // Establish the first paint before styles, fonts, and animation scripts load.
+      document.documentElement.classList.add('sculpture-loading');
+      if (location.hash !== '#contact' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('intro-pending','scroll-held');
+        window.HeroIntroLock = {active:true, release() {
+          this.active = false;
+          document.documentElement.classList.remove('intro-pending','scroll-held');
+          window.SiteScroll?.unlock('intro');
+        }};
+        window.introBootTimeout = setTimeout(() => window.HeroIntroLock.release(), 8000);
+      }
+    </script>
+    <style>
+      html { scrollbar-gutter: stable; }
+      html.scroll-held { overflow: hidden !important; }
+      html.intro-pending .hero-layout, html.intro-pending .site-header,
+      html.intro-pending .story-backdrop--hero { opacity: 0 !important; }
+      html.intro-pending .hero-frame { border-color: transparent !important; background: transparent !important; }
+    </style>
+    <link rel="preload" href="fonts/Nippo-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="stylesheet" href="vendor/lenis.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="text-effects.css" />
+    <link rel="stylesheet" href="interaction-effects.css" />
+    <link rel="stylesheet" href="connect-footer.css" />
+    <link rel="stylesheet" href="page-navigation.css" />
+  </head>
+  <body>
+    <main>
+      <header class="site-header">
+        <a class="brand" href="#home" aria-label="S4DS home"><img src="logo.png" alt="S4DS" /></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          <span></span><span></span><span class="sr-only">Toggle navigation</span>
+        </button>
+        <nav class="site-nav" id="primary-nav" aria-label="Primary navigation">
+          <a class="active" aria-current="page" href="#home">HOME</a>
+          <a href="team.html">TEAM</a>
+          <a href="events.html">EVENTS</a>
+          <a href="gallery.html">GALLERY</a>
+          <a href="#contact">CONTACT</a>
+        </nav>
+      </header>
+      <section class="story-track" id="home" aria-label="S4DS opening sequence">
+        <div class="story-stage">
+          <div class="story-backdrop story-backdrop--hero" aria-hidden="true"><div class="story-atmosphere"></div></div>
+          <div class="story-backdrop story-backdrop--archive" aria-hidden="true"><div class="story-atmosphere"><div class="archive-clock">
+            <svg viewBox="-210 -210 420 420" preserveAspectRatio="none" fill="none" focusable="false">
+              <circle r="190" stroke="#578fbd" stroke-width="1"/>
+              <circle r="161" stroke="#235e8a" stroke-width=".7"/>
+              <g class="dial" stroke="#91c5e9" stroke-width="1"><path d="M 0 -166 V -188" transform="rotate(0)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(3)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(6)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(9)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(12)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(15)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(18)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(21)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(24)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(27)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(30)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(33)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(36)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(39)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(42)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(45)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(48)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(51)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(54)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(57)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(60)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(63)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(66)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(69)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(72)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(75)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(78)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(81)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(84)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(87)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(90)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(93)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(96)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(99)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(102)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(105)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(108)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(111)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(114)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(117)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(120)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(123)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(126)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(129)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(132)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(135)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(138)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(141)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(144)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(147)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(150)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(153)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(156)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(159)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(162)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(165)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(168)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(171)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(174)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(177)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(180)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(183)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(186)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(189)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(192)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(195)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(198)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(201)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(204)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(207)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(210)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(213)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(216)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(219)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(222)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(225)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(228)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(231)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(234)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(237)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(240)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(243)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(246)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(249)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(252)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(255)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(258)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(261)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(264)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(267)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(270)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(273)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(276)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(279)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(282)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(285)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(288)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(291)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(294)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(297)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(300)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(303)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(306)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(309)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(312)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(315)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(318)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(321)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(324)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(327)" opacity="0.55"/><path d="M 0 -166 V -188" transform="rotate(330)" opacity="0.9"/><path d="M 0 -180 V -188" transform="rotate(333)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(336)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(339)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(342)" opacity="0.55"/><path d="M 0 -174 V -188" transform="rotate(345)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(348)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(351)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(354)" opacity="0.55"/><path d="M 0 -180 V -188" transform="rotate(357)" opacity="0.55"/><path d="M -147 -94 A 174 174 0 0 1 142 -100" stroke="#4c9bd3" stroke-width="2"/><g class="clock-hand"><path d="M 0 0 L -128 128" stroke="#b8def7" stroke-width="1.6"/><path d="M -124 124 L -118 118" stroke="#d5eeff" stroke-width="4"/></g><circle r="5" fill="#8ec6e9" stroke="none"/><path d="M -125 0 H 125 M 0 -125 V 125" stroke="#235e8a" opacity=".4"/></g>
+            </svg>
+          </div></div></div>
+          <section id="events" class="deck-layout" aria-labelledby="deck-title" aria-hidden="true" inert>
+            <p class="deck-kicker">// MEMORY ARCHIVE</p>
+            <div class="deck-window" aria-hidden="true"></div>
+            <aside class="deck-aside" aria-label="Memory archive details">
+              <div class="deck-mode">
+                <span class="deck-crosshair deck-brackets" aria-hidden="true">+</span>
+                <p>ARCHIVE MODE<br />VIEWING MEMORIES</p>
+              </div>
+              <div class="deck-note deck-brackets">
+                <p>CAPTURED MOMENTS.<br />REAL PEOPLE.<br />RAW ENERGY.<br />TIMELESS IMPACT.</p>
+              </div>
+              <div class="deck-dots" aria-hidden="true"></div>
+            </aside>
+            <h2 id="deck-title"><span>THE</span><span>ARCHIVE</span></h2>
+            <p class="deck-subtitle">A GLIMPSE INTO<br />THE PAST</p>
+            <div class="deck-palette" id="gallery">
+              <svg class="deck-palette-art" viewBox="0 0 700 457" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Archive photos: a cricket game, students working in a computer lab, and an auditorium event">
+                <g class="deck-photo">
+                <path d="M21 177V1H328V177H21Z" stroke="#555550" stroke-width="2"/>
+                <path d="M21 41V1H64" stroke="#e9e8e3" stroke-width="2"/>
+                <image href="assets/archive-cricket.webp" x="43" y="24" width="341" height="179" preserveAspectRatio="xMidYMid slice"/>
+                </g>
+                <g class="deck-photo">
+                <image href="assets/archive-lab.webp" x="17" y="257" width="232" height="168" preserveAspectRatio="xMidYMid slice"/>
+                <path d="M5 328V248H66M209 445H249V402M1 248H15M5 243V257M239 445H256M249 434V453" stroke="#e9e8e3" stroke-width="2"/>
+                </g>
+                <g class="deck-photo">
+                <path d="M300 265V189H365V213" stroke="#85817e" stroke-width="2"/>
+                <path d="M300 221V189H326M300 239V265H323" stroke="#e9e8e3" stroke-width="2"/>
+                <image href="assets/archive-auditorium.webp" x="311" y="197" width="376" height="250" preserveAspectRatio="xMidYMid slice"/>
+                <path d="M650 192H697V253M697 401V456H328V426" stroke="#e9e8e3" stroke-width="2"/>
+                <path d="M328 426V456H357M658 456H687V433" stroke="#85817e" stroke-width="2"/>
+                </g>
+              </svg>
+            </div>
+            <nav class="deck-nav" aria-label="Rotating archive memories">
+              <button class="deck-direction deck-previous" type="button" data-deck-prev aria-label="Previous memory"><span class="deck-arrow" aria-hidden="true">←</span><span class="deck-direction-label">PREVIOUS MEMORY</span></button>
+              <div class="deck-memory-items">
+                <button type="button" data-deck-memory="0" aria-label="View memory 01" aria-current="true">01</button><span aria-hidden="true"></span>
+                <button type="button" data-deck-memory="1" aria-label="View memory 02">02</button><span aria-hidden="true"></span>
+                <button type="button" data-deck-memory="2" aria-label="View memory 03">03</button><span aria-hidden="true"></span>
+                <button type="button" data-deck-memory="3" aria-label="View memory 04">04</button>
+              </div>
+              <button class="deck-direction deck-next" type="button" data-deck-next aria-label="Next memory"><span class="deck-direction-label">NEXT MEMORY</span><span class="deck-arrow" aria-hidden="true">→</span></button>
+            </nav>
+          </section>
+          <div class="deck-position">
+          <div class="story-camera">
+            <div class="story-carousel">
+      <section class="hero story-card story-card--hero" aria-labelledby="hero-title">
+        <div class="hero-frame">
+<div class="hero-layout">
+          <aside class="rail" aria-label="Project information">
+            <span class="rail-rule rail-rule-top" aria-hidden="true"></span>
+            <span class="rail-label">S4DS // 2026–27</span>
+            <span class="rail-rule rail-rule-middle" aria-hidden="true"></span>
+            <img class="rail-globe" src="globe.svg" alt="" aria-hidden="true" />
+            <span class="rail-rule rail-rule-bottom" aria-hidden="true"></span>
+          </aside>
+
+          <div class="hero-content">
+            <div class="hero-sculpture" tabindex="0" role="group" aria-label="Interactive glass sculpture. Drag or use arrow keys to rotate. Hold still to freeze the page, or press F. Click anywhere or press Escape to resume. Space pauses rotation; Home resets.">
+              <img class="hero-sculpture-fallback" src="assets/hero-sculpture-reference.webp" alt="Iridescent glass prisms radiating around a chrome ring" />
+              <span class="sculpture-hint" aria-hidden="true"><span>drag to explore</span><span>hold to freeze &lt;easter egg&gt; &lt;3</span></span>
+            </div>
+            <div class="hero-copy">
+              <p class="hero-location">LOC.TCET</p>
+              <h1 id="hero-title" class="hero-title">
+                <span>SOCIETY 4</span>
+                <span>DATA</span>
+                <span>SCIENCE</span>
+              </h1>
+
+              <div class="hero-tag">
+                <span class="corner-mark" aria-hidden="true"></span>
+                <p><span>We’re here to learn,</span> <span>experiment, build things,</span> <span>and figure out what’s</span> <span>possible along the way.</span></p>
+              </div>
+
+              <button class="join-button" type="button" data-open-join>
+                <span>JOIN NOW</span>
+                
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-footer" aria-label="Live project status">
+            <span class="footer-tick" aria-hidden="true"></span>
+            <span class="footer-tick" aria-hidden="true"></span>
+            <span class="footer-tick" aria-hidden="true"></span>
+            <span class="footer-tick" aria-hidden="true"></span>
+            <p>THINK BEYOND THE DATA</p>
+            <span class="footer-dots" aria-hidden="true">······</span>
+            <span class="recording"><i aria-hidden="true"></i><span class="recording-label">REC</span></span>
+          </div>
+        </div>
+        </div>
+        <div class="hero-card-symbol" aria-hidden="true"><img src="logo.png" alt="" /><span>S4DS</span></div>
+        <div class="hero-card-back" aria-hidden="true">
+          <span>S4DS</span>
+          <small>ARCHIVE SYSTEM</small>
+        </div>
+      </section>
+
+              <article id="team" class="story-card story-card--team" aria-hidden="true">
+                <div class="story-card-face story-card-face--front story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-02.webp" alt="Students presenting their work in a computer lab" decoding="async" />
+                </div>
+                <div class="story-card-face story-card-face--back story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-02.webp" alt="" decoding="async" />
+                </div>
+              </article>
+
+              <article class="story-card story-card--events" aria-hidden="true">
+                <div class="story-card-face story-card-face--front story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-03.webp" alt="Participants and organisers at a data science event" decoding="async" />
+                </div>
+                <div class="story-card-face story-card-face--back story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-03.webp" alt="" decoding="async" />
+                </div>
+              </article>
+
+              <article class="story-card story-card--archive" aria-hidden="true">
+                <div class="story-card-face story-card-face--front story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-04.webp" alt="A participant playing in a neon-lit activity arena" decoding="async" />
+                </div>
+                <div class="story-card-face story-card-face--back story-card-face--photo">
+                  <img class="story-card-photo" src="assets/memory-04.webp" alt="" decoding="async" />
+                </div>
+              </article>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </section>
+
+      <footer class="connect-footer" id="contact" aria-label="Contact S4DS">
+       <div class="connect-stage">
+        <div class="connect-particles" aria-hidden="true"></div>
+        <div class="connect-world" aria-hidden="true"></div>
+        <div class="connect-intro"><p class="connect-kicker">KEEP IN SYNC</p><h2 class="connect-title" id="connect-title"><span class="connect-title-line">CONNECT</span><span class="connect-title-line">WITH US</span></h2></div>
+        <address class="connect-contacts">
+          <h3>CONTACTS :</h3>
+          <div class="connect-person">
+            <p>Chairperson -</p>
+            <a href="mailto:shaikhaayan4721@gmail.com">SHAIKHAAYAN4721@GMAIL.COM</a>
+          </div>
+          <div class="connect-person">
+            <p>Vice Chairperson -</p>
+            <a href="mailto:shradhasingh257@gmail.com">SHRADHASINGH257@GMAIL.COM</a>
+          </div>
+        </address>
+        <a class="connect-wordmark" href="#home" aria-label="S4DS — back to home"><span>S</span><span>4</span><span>D</span><span>S</span></a>
+        <button class="connect-motion" type="button" aria-pressed="false" aria-label="Pause or resume footer animation">Pause motion</button>
+       </div>
+      </footer>
+    </main>
+
+    <div class="join-modal" data-join-modal hidden>
+      <div class="modal-backdrop" data-close-join></div>
+      <section class="join-panel" role="dialog" aria-modal="true" aria-labelledby="join-title">
+        <button class="modal-close" type="button" data-close-join aria-label="Close join form">×</button>
+        <p class="modal-kicker">S4DS COMMUNITY</p>
+        <h2 id="join-title">JOIN THE<br />NEXT MEMORY.</h2>
+        <p class="modal-copy">Leave your email and we’ll send the next build session, event, or experiment.</p>
+        <form class="join-form" novalidate>
+          <label for="join-email">EMAIL ADDRESS</label>
+          <input id="join-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          <p class="form-message" role="status" aria-live="polite"></p>
+          <button class="join-submit" type="submit">SEND REQUEST <span aria-hidden="true">↗</span></button>
+        </form>
+      </section>
+    </div>
+
+    <script src="vendor/gsap.min.js"></script>
+    <script src="vendor/ScrollTrigger.min.js"></script>
+    <script src="vendor/lenis.min.js"></script>
+    <script src="story-math.js"></script>
+    <script src="archive-title-orbit.js"></script>
+
+    <script src="script.js"></script>
+    <script src="space-particles.js"></script>
+    <script src="hero-decode.js"></script>
+    <script src="text-effects.js"></script>
+    <script src="warp-text-shaders.js"></script>
+    <script src="warp-text.js"></script>
+    <script src="entrance-motion.js"></script>
+    <script src="ambient-indicators.js"></script>
+    <script src="interaction-effects.js"></script>
+    <script src="card-glare.js"></script>
+    <script src="connect-footer.js"></script>
+    <script src="freeze-console.js"></script>
+    <script src="freeze-flow.js"></script>
+    <script src="freeze-fallback.js"></script>
+    <script src="hero-liquid.js"></script>
+    <script src="hero-freeze.js"></script>
+    <script type="module" src="hero-sculpture.js" onerror="document.querySelector('.hero-sculpture').classList.add('is-fallback')"></script>
+  </body>
+</html>
