@@ -30,10 +30,15 @@ export function Hero() {
                 </p>
               </div>
 
-              <button className="join-button" type="button" data-open-join="">
+              <a
+                className="join-button"
+                href="https://forms.gle/1Dq1rnAu5s8Hvx2a6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>{'JOIN NOW'}</span>
                 {'\n                \n              '}
-              </button>
+              </a>
             </div>
           </div>
 

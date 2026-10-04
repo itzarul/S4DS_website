@@ -12,6 +12,7 @@ export default defineConfig({
         team: 'team.html',
         events: 'events.html',
         gallery: 'gallery.html',
+        publication: 'publication.html',
       },
       output: {
         manualChunks(id) {

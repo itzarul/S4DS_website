@@ -11,6 +11,12 @@ export function CursorEffects() {
     return () => {
       scope.dispose();
       nodes.forEach((node) => node.remove());
+      document.documentElement.classList.remove(
+        'signal-pointer',
+        'hand-pointer',
+        'pointer-hover',
+        'pointer-pressed',
+      );
     };
   }, []);
   return null;

@@ -1,23 +1,21 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { Navbar } from './components/Navbar';
-import { JoinModal } from './components/JoinModal';
 import { PageTransition } from './components/PageTransition';
 import { CursorEffects } from './components/CursorEffects';
 import { Home } from './pages/Home/Home';
 import { Team } from './pages/Team/Team';
 import { Events } from './pages/Events/Events';
 import { Gallery } from './pages/Gallery/Gallery';
+import { Publication } from './pages/Publication/Publication';
 import { pageFromPath } from './components/navigation';
 
 export function App() {
   const [page, setPage] = useState(() => pageFromPath(location.pathname));
-  const [joinOpen, setJoinOpen] = useState(false);
   const skipIntro = useRef(page !== 'home' || location.hash === '#contact');
-  const closeJoin = useCallback(() => setJoinOpen(false), []);
   useLayoutEffect(() => {
     document.body.classList.toggle('blank-page', page !== 'home');
-    for (const id of ['team', 'events', 'gallery'])
+    for (const id of ['team', 'events', 'gallery', 'publication'])
       document.body.classList.toggle(`blank-page--${id}`, page === id);
     document.title =
       page === 'home'
@@ -31,10 +29,7 @@ export function App() {
       if (replace) history.replaceState(null, '', url.pathname + url.hash);
       else history.pushState(null, '', url.pathname + url.hash);
       skipIntro.current = true;
-      flushSync(() => {
-        setJoinOpen(false);
-        setPage(next);
-      });
+      flushSync(() => setPage(next));
       if (next === 'home') window.SiteScroll?.navigate(url.hash || '#home');
       else scrollTo({ top: 0, behavior: 'instant' });
     };
@@ -58,7 +53,6 @@ export function App() {
         onClick={(event) => {
           const target = event.target;
           if (!(target instanceof Element)) return;
-          if (target.closest('[data-open-join]')) setJoinOpen(true);
           const wordmark = target.closest<HTMLAnchorElement>('.connect-wordmark');
           if (wordmark) {
             event.preventDefault();
@@ -73,13 +67,14 @@ export function App() {
           <Team />
         ) : page === 'events' ? (
           <Events />
-        ) : (
+        ) : page === 'gallery' ? (
           <Gallery />
+        ) : (
+          <Publication />
         )}
       </main>
-      <JoinModal open={joinOpen} onClose={closeJoin} />
       <PageTransition />
-      <CursorEffects />
+      {(page === 'home' || page === 'team') && <CursorEffects />}
     </>
   );
 }
