@@ -1,60 +1,91 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Instagram, Github, Youtube, ArrowUpRight } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Instagram,
+  Github,
+  Youtube,
+  ArrowUpRight,
+} from 'lucide-react';
 import S4DSLogo from './S4DSLogo';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const footerRef = useRef(null);
 
-  useGSAP(() => {
-    // Subtle curtain-flip reveal for the footer content
-    gsap.fromTo(
-      ".footer-flip-content",
-      { rotateX: -25, opacity: 0, yPercent: 15 },
-      {
-        rotateX: 0,
-        opacity: 1,
-        yPercent: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 95%", // Start when footer top enters the screen
-          end: "bottom bottom", // Finish when footer is fully visible
-          scrub: true,
-        }
-      }
-    );
-  }, { scope: footerRef });
+  useGSAP(
+    () => {
+      // Subtle curtain-flip reveal for the footer content
+      gsap.fromTo(
+        '.footer-flip-content',
+        { rotateX: -25, opacity: 0, yPercent: 15 },
+        {
+          rotateX: 0,
+          opacity: 1,
+          yPercent: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 95%', // Start when footer top enters the screen
+            end: 'bottom bottom', // Finish when footer is fully visible
+            scrub: true,
+          },
+        },
+      );
+    },
+    { scope: footerRef },
+  );
 
   return (
-    <footer ref={footerRef} className="relative z-10 bg-zinc-950 border-t border-zinc-800/80 pt-16 pb-12 overflow-hidden" style={{ perspective: '1000px' }}>
+    <footer
+      ref={footerRef}
+      className="relative z-10 bg-zinc-950 border-t border-zinc-800/80 pt-16 pb-12 overflow-hidden"
+      style={{ perspective: '1000px' }}
+    >
       {/* Background glow and ambient particles behind footer */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
-      
+
       {/* Subtle ambient drifting particles */}
       <div className="absolute inset-0 pointer-events-none opacity-30 z-0 overflow-hidden">
-         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full absolute top-[20%] left-[15%] animate-pulse" style={{ animationDuration: '3s' }}></div>
-         <div className="w-1 h-1 bg-cyan-400 rounded-full absolute top-[60%] left-[75%] animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
-         <div className="w-2 h-2 bg-blue-600 rounded-full absolute bottom-[30%] left-[25%] animate-pulse" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
-         <div className="w-1 h-1 bg-blue-300 rounded-full absolute top-[70%] left-[50%] animate-pulse" style={{ animationDuration: '2.5s' }}></div>
+        <div
+          className="w-1.5 h-1.5 bg-blue-500 rounded-full absolute top-[20%] left-[15%] animate-pulse"
+          style={{ animationDuration: '3s' }}
+        ></div>
+        <div
+          className="w-1 h-1 bg-cyan-400 rounded-full absolute top-[60%] left-[75%] animate-pulse"
+          style={{ animationDuration: '4s', animationDelay: '1s' }}
+        ></div>
+        <div
+          className="w-2 h-2 bg-blue-600 rounded-full absolute bottom-[30%] left-[25%] animate-pulse"
+          style={{ animationDuration: '5s', animationDelay: '2s' }}
+        ></div>
+        <div
+          className="w-1 h-1 bg-blue-300 rounded-full absolute top-[70%] left-[50%] animate-pulse"
+          style={{ animationDuration: '2.5s' }}
+        ></div>
       </div>
 
-      <div className="footer-flip-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ transformOrigin: 'bottom center' }}>
+      <div
+        className="footer-flip-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{ transformOrigin: 'bottom center' }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-zinc-800/80">
-          
           {/* Brand & Description */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="inline-block">
               <S4DSLogo className="w-10 h-10" />
             </Link>
-            
+
             <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Society for Data Science (S4DS) — TCET Chapter is an autonomous student organization dedicated to artificial intelligence, machine learning, data engineering, and interdisciplinary research.
+              Society for Data Science (S4DS) — TCET Chapter is an autonomous student organization
+              dedicated to artificial intelligence, machine learning, data engineering, and
+              interdisciplinary research.
             </p>
 
             <div className="flex items-center gap-2 pt-2">

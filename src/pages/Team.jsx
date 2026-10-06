@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import {
   hodData,
   facultyInchargeData,
+  branchCounsellorData,
   coreTeams,
   coreTeam2026_2027,
   coreTeam2025_2026,
@@ -377,6 +378,23 @@ const facultyMembers = [
     email: facultyInchargeData.email,
     nodeId: "ID: FIC-DS",
     accessLevel: "Chief Advisory",
+    status: "ACTIVE",
+  },
+  {
+    id: "fac-branch-counsellor",
+    name: branchCounsellorData.name,
+    codeName: "FAC_COUNSELLOR_03",
+    role: "Branch Counsellor",
+    designation: branchCounsellorData.designation,
+    department: branchCounsellorData.department,
+    image: branchCounsellorData.image?.startsWith("../../public")
+      ? branchCounsellorData.image.replace("../../public", "")
+      : branchCounsellorData.image,
+    bio: branchCounsellorData.message,
+    linkedin: branchCounsellorData.linkedin,
+    email: branchCounsellorData.email,
+    nodeId: "ID: BC-DS",
+    accessLevel: "Advisory Core",
     status: "ACTIVE",
   },
 ];
@@ -797,7 +815,7 @@ export default function Team() {
             {/* Render 2026-2027 Core */}
             <CoreTeamGrid
               members={executiveCoreMembers2026}
-              className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`${
                 selectedYear === "2026-2027"
                   ? "opacity-100 visible translate-y-0 relative z-10"
                   : "opacity-0 invisible absolute top-0 left-0 right-0 -translate-y-4 pointer-events-none z-0"
@@ -809,7 +827,7 @@ export default function Team() {
             {/* Render 2025-2026 Core */}
             <CoreTeamGrid
               members={executiveCoreMembers2025}
-              className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`${
                 selectedYear === "2025-2026"
                   ? "opacity-100 visible translate-y-0 relative z-10"
                   : "opacity-0 invisible absolute top-0 left-0 right-0 translate-y-4 pointer-events-none z-0"
