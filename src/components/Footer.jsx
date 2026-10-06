@@ -19,29 +19,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   const footerRef = useRef(null);
 
-  useGSAP(
-    () => {
-      // Subtle curtain-flip reveal for the footer content
-      gsap.fromTo(
-        '.footer-flip-content',
-        { rotateX: -25, opacity: 0, yPercent: 15 },
-        {
-          rotateX: 0,
-          opacity: 1,
-          yPercent: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 95%', // Start when footer top enters the screen
-            end: 'bottom bottom', // Finish when footer is fully visible
-            scrub: true,
-          },
-        },
-      );
-    },
-    { scope: footerRef },
-  );
-
   return (
     <footer
       ref={footerRef}

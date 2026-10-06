@@ -20,6 +20,12 @@
     --color-card-border: rgba(255, 255, 255, 0.1);
     --color-primary: #3585f6; /* Light Blue */
     --color-accent: #012f7c; /* Dark Blue */
+
+    /* Custom Cursors */
+    --cursor-default: url('/assets/cursor-arrow.svg'), auto;
+    --cursor-pointer: url('/assets/cursor-arrow-hover.svg'), pointer;
+    --cursor-active: url('/assets/cursor-arrow-pressed.svg'), pointer;
+    --cursor-freeze: url('/assets/cursor-freeze.svg'), wait;
   }
 
   body {
@@ -28,6 +34,15 @@
     background-color: var(--color-bg);
     color: #FAFAFA;
   }
+
+  /* Global Cursor Overrides */
+  @media (pointer: fine) {
+    *, html, body {
+      cursor: none !important;
+    }
+  }
+
+
 }
 
 /* Custom Font Typography Utility Classes */

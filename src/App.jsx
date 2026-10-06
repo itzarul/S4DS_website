@@ -9,6 +9,8 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
+import CustomCursor from './components/CustomCursor';
+
 // Scroll to top automatically when navigation changes
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,6 +26,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <CustomCursor />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />

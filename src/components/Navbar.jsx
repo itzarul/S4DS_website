@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* S4DS Brand Logo */}
           <Link to="/" className="outline-none" onClick={() => setMobileMenuOpen(false)}>
-            <S4DSLogo className="w-9 h-9" />
+            <S4DSLogo className="w-14 h-14" />
           </Link>
 
           {/* Desktop Nav Links */}
