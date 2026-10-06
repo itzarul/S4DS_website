@@ -157,24 +157,25 @@ test('navigation opens separate pages, returns Home immediately, and keeps same-
     assert.equal(location.hash, '#contact');
     await click('a[href="/#home"]');
     assert.equal(window.TextEffects, textEngine);
-    for (const page of ['team', 'events', 'gallery']) {
+    for (const page of ['team', 'events', 'gallery', 'publication']) {
       await click(`a[href="/${page}.html"]`);
       assert.equal(location.pathname, `/${page}.html`);
       assert.ok(window.document.body.classList.contains(`blank-page--${page}`));
       assert.equal(window.document.querySelector('.story-track'), null);
       assert.equal(window.document.querySelectorAll('.freeze-dialog, .freeze-liquid').length, 0);
+      assert.equal(window.document.querySelectorAll('.cursor-fluid').length, page === 'team' ? 1 : 0);
       await click('a[href="/#home"]');
       assert.ok(window.document.querySelector('.story-track'));
       assert.equal(window.HeroIntroLock.active, false);
       assert.equal(window.document.documentElement.classList.contains('intro-pending'), false);
       assert.equal(window.document.querySelectorAll('.card-glare').length, 8);
     }
-    await click('[data-open-join]');
-    assert.equal(window.document.querySelector('[data-join-modal]').hidden, false);
-    assert.equal(window.document.querySelector('main').inert, true);
-    await click('.modal-close');
-    assert.equal(window.document.querySelector('[data-join-modal]').hidden, true);
-    assert.equal(window.document.querySelector('main').inert, false);
+    const join = window.document.querySelector('.join-button');
+    assert.equal(join.tagName, 'A');
+    assert.equal(join.href, 'https://forms.gle/1Dq1rnAu5s8Hvx2a6');
+    assert.equal(join.target, '_blank');
+    assert.equal(join.rel, 'noopener noreferrer');
+    assert.equal(window.document.querySelector('[data-join-modal]'), null);
   } finally {
     await React.act(async () => root.unmount());
     console.error = previousError; console.warn = previousWarn;

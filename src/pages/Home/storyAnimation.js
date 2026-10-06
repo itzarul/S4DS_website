@@ -10,15 +10,14 @@ export default function mount(scope) {
     ScrollTrigger,
     Lenis,
   } = scope.environment;
-  const siteHeader = document.querySelector('.site-header'),
-    modal = document.querySelector('[data-join-modal]');
+  const siteHeader = document.querySelector('.site-header');
   let smoothScroll = null;
   const scrollLocks = new Set(window.HeroIntroLock?.active ? ['intro'] : []);
   function syncScrollLock() {
     const locked = scrollLocks.size > 0;
     document.documentElement.classList.toggle('scroll-held', locked);
     if (locked) smoothScroll?.stop();
-    else if (modal.hidden) smoothScroll?.start();
+    else smoothScroll?.start();
   }
   window.SiteScroll = {
     lock(reason) {
