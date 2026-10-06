@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   Globe,
@@ -8,9 +8,10 @@ import {
   BookOpen,
   FileCheck,
   X,
-  ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
+import ThreeDLogo from "../components/ThreeDLogo";
 
 // Corner brackets component from Team.jsx
 function CornerBrackets({
@@ -159,28 +160,42 @@ const ArticleCard = React.memo(function ArticleCard({ article, onImageClick }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className="relative w-full max-w-full lg:max-w-[95%] mx-auto group opacity-100 h-full"
     >
-      <div className="team-card relative h-full bg-[#000000] border border-[#012f7c] p-4 sm:p-6 team-primary text-white overflow-hidden hover:border-[#3585f6] hover:shadow-[0_0_20px_rgba(53,133,246,0.5),inset_0_0_20px_rgba(53,133,246,0.2)] flex flex-col">
-        {/* Outer Border accents */}
-        <div className="absolute inset-1 border-[0.5px] border-[#3585f6]/20 pointer-events-none group-hover:border-[#3585f6]/50 transition-colors" />
+      <div className="relative h-full bg-[#020817]/70 backdrop-blur-md border border-t-[#3585f6]/30 border-l-[#3585f6]/20 border-b-[#012f7c]/40 border-r-[#012f7c]/40 p-6 sm:p-8 text-slate-200 overflow-hidden hover:bg-[#040f29]/80 flex flex-col transition-all duration-500 rounded-2xl group-hover:shadow-[0_15px_40px_-10px_rgba(53,133,246,0.25)]">
+        
+        {/* Subtle Cyber Grid Background */}
+        <div className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none" 
+             style={{ backgroundImage: 'linear-gradient(#3585f6 1px, transparent 1px), linear-gradient(90deg, #3585f6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+        
+        {/* Animated Cyber Glow Background on Hover */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(53,133,246,0.12),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+        
+        {/* Laser Scanning Line on Hover */}
+        <motion.div 
+           className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#3585f6]/50 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none z-20"
+           initial={{ top: "0%" }}
+           whileHover={{ top: "100%" }}
+           transition={{ duration: 2.5, ease: "linear", repeat: Infinity }}
+        />
 
-        {/* Top Bar */}
-        <div className="flex justify-between items-start border-b border-[#012f7c] pb-2 mb-4 relative z-10 shrink-0">
-          <span className="text-[9px] sm:text-[10px] text-[#3585f6] tracking-widest uppercase font-semibold">
-            S4DS.EXE // BULLETIN_ARTICLE
-          </span>
-          <div className="flex items-center gap-2">
-            <div className="flex gap-[2px] opacity-60">
-              <div className="w-[2px] h-5 bg-[#3585f6]"></div>
-              <div className="w-[2px] h-5 bg-[#3585f6]"></div>
-              <div className="w-[2px] h-3 bg-[#3585f6] mt-2"></div>
-              <div className="w-[2px] h-5 bg-[#3585f6]"></div>
-            </div>
-            <div className="text-[8px] text-[#3585f6] leading-[1] font-bold text-right">
-              <div>20</div>
-              <div>26</div>
-            </div>
+        {/* Outer Border accents */}
+        <div className="absolute inset-[2px] border-[0.5px] border-[#3585f6]/10 pointer-events-none group-hover:border-[#3585f6]/30 transition-colors duration-500" />
+
+        {/* Top Bar - Professional Style */}
+        <div className="flex justify-between items-center mb-6 relative z-10 shrink-0">
+          <div className="flex items-center gap-4">
+             <span className="px-4 py-1.5 rounded-full bg-[#3585f6] text-[10px] sm:text-[11px] text-white tracking-[0.2em] uppercase font-bold shadow-[0_4px_14px_0_rgba(53,133,246,0.39)]">
+               PUBLICATION
+             </span>
+             <span className="text-[11px] text-zinc-400 font-semibold tracking-widest uppercase border-l border-zinc-700 pl-4">{article.role || "Research"}</span>
+          </div>
+          <div className="flex gap-1.5 opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+             <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-[#3585f6] transition-colors duration-300 delay-75 shadow-[0_0_5px_transparent] group-hover:shadow-[0_0_8px_#3585f6]" />
+             <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-[#3585f6] transition-colors duration-300 delay-150 shadow-[0_0_5px_transparent] group-hover:shadow-[0_0_8px_#3585f6]" />
+             <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-[#3585f6] transition-colors duration-300 delay-200 shadow-[0_0_5px_transparent] group-hover:shadow-[0_0_8px_#3585f6]" />
           </div>
         </div>
 
@@ -188,25 +203,19 @@ const ArticleCard = React.memo(function ArticleCard({ article, onImageClick }) {
           {/* Left Column (Text) */}
           <div className="flex-1 flex flex-col justify-center">
             <div>
-              <motion.div variants={detailVariants} className="flex items-end gap-[2px] h-6 mb-3 opacity-80 card-detail">
-                {[
-                  4, 8, 6, 12, 16, 10, 14, 24, 18, 12, 8, 14, 10, 6, 4,
-                ].map((h, i) => (
-                  <div key={i} className="w-1 bg-[#3585f6]" style={{ height: `${h}px` }} />
-                ))}
-              </motion.div>
+              {/* Removed volume bars as per request */}
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase leading-[1.1] tracking-tight text-white mb-3 team-display group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-blackletter font-normal capitalize leading-[1.1] tracking-wide text-white mb-4 group-hover:text-blue-50 transition-colors duration-500 drop-shadow-md">
                 {titleParts.map((part, i) => (
                   <React.Fragment key={i}>
-                    {part}{" "}
+                    {part.toLowerCase()}{" "}
                   </React.Fragment>
                 ))}
               </h2>
 
-              <motion.div variants={detailVariants} className="flex items-center gap-2 mb-2 border-t border-[#012f7c] pt-3 card-detail">
-                <span className="text-[10px] sm:text-[11px] text-[#3585f6] uppercase tracking-widest font-semibold">
-                  AUTHOR: {article.author}
+              <motion.div variants={detailVariants} className="flex items-center mb-4 pt-1 card-detail">
+                <span className="text-[12px] sm:text-[13px] text-zinc-400 font-medium tracking-wide">
+                  By <span className="text-white font-bold">{article.author}</span>
                 </span>
               </motion.div>
 
@@ -217,28 +226,37 @@ const ArticleCard = React.memo(function ArticleCard({ article, onImageClick }) {
           </div>
 
           {/* Right Column (Image) */}
-          <div className="w-full sm:w-[200px] md:w-[260px] border border-[#012f7c] p-1.5 flex flex-col relative shrink-0 h-fit mt-4 sm:mt-0 sm:ml-4">
-            <div className="flex justify-between items-center text-[7px] sm:text-[8px] text-[#3585f6] mb-1.5 px-0.5 uppercase tracking-widest font-bold">
-              <span>////L</span>
-              <span>// VISUAL_DATA</span>
-            </div>
+          <div className="w-full sm:w-[200px] md:w-[260px] bg-gradient-to-b from-[#010a1c]/80 to-[#000000]/90 border border-[#3585f6]/10 group-hover:border-[#3585f6]/40 transition-all duration-500 p-2 rounded-xl flex flex-col relative shrink-0 h-fit mt-4 sm:mt-0 sm:ml-4 shadow-inner group-hover:shadow-[0_0_25px_rgba(53,133,246,0.15)]">
             <div 
-              className="relative w-full h-[220px] sm:h-[200px] md:h-[260px] overflow-hidden bg-[#000000] border border-[#012f7c] cursor-pointer group/img"
+              className="relative w-full h-[220px] sm:h-[200px] md:h-[260px] overflow-hidden bg-[#000000] border border-[#012f7c]/30 rounded-lg cursor-pointer group/img transition-colors duration-500 group-hover:border-[#3585f6]/60"
               onClick={() => onImageClick(article.images, localIndex)}
             >
-              <img
-                src={article.images[localIndex]}
-                className="w-full h-full object-cover object-center filter contrast-110 group-hover/img:scale-105 transition-transform duration-500"
-                alt={article.title}
-              />
-              <div className="absolute inset-0 bg-[#012f7c]/20 mix-blend-overlay pointer-events-none group-hover/img:bg-transparent transition-colors"></div>
+              <AnimatePresence>
+                <motion.img
+                  key={localIndex}
+                  src={article.images[localIndex]}
+                  alt={article.title}
+                  initial={{ opacity: 0, filter: "brightness(0.8) contrast(1.2)" }}
+                  animate={{ opacity: 1, filter: "brightness(1) contrast(1.1)" }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-[3000ms] ease-out"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-[#012f7c]/10 mix-blend-overlay pointer-events-none group-hover/img:bg-transparent transition-colors duration-700"></div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <motion.div variants={detailVariants} className="mt-6 pt-4 border-t border-[#012f7c] flex justify-between items-center text-[9px] sm:text-[10px] text-[#3585f6] uppercase tracking-widest font-bold relative z-10 card-detail shrink-0">
-          <span>{article.role.toUpperCase()}</span>
+        {/* Bottom Bar - Professional Footer */}
+        <motion.div variants={detailVariants} className="mt-6 pt-5 border-t border-zinc-800/80 flex justify-between items-center relative z-10 card-detail shrink-0">
+          <div className="flex items-center text-[10px] sm:text-[11px] text-zinc-400 font-semibold tracking-widest uppercase">
+            <span>2025–26 ACADEMIC YEAR</span>
+          </div>
+          <div className="flex items-center gap-2 group/btn cursor-pointer">
+            <span className="text-[10px] sm:text-[11px] text-white font-bold uppercase tracking-widest group-hover:text-[#3585f6] transition-colors duration-300">READ PUBLICATION</span>
+            <ArrowUpRight className="w-4 h-4 text-white group-hover:text-[#3585f6] transition-colors duration-300" />
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -286,7 +304,8 @@ export default function Publications() {
     <div className="min-h-screen bg-[#000000] text-slate-100 pt-24 pb-24 px-4 sm:px-6 lg:px-8 team-primary font-light selection:bg-[#012f7c] selection:text-white relative overflow-hidden">
       {/* Background and Overlays */}
       <div className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0 opacity-85" style={{ backgroundImage: "url('/team/background.jpeg')" }} />
-      <div className="fixed inset-0 bg-[#000000]/40 pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-[#000000]/50 pointer-events-none z-0" />
+      <ThreeDLogo className="fixed inset-0 w-screen h-screen flex items-center justify-center z-[1] opacity-50 mix-blend-screen pointer-events-none overflow-hidden" />
       <div className="team-scanlines fixed inset-0 opacity-25 pointer-events-none z-30" />
       <div className="team-vignette fixed inset-0 z-30 pointer-events-none" />
       
@@ -383,48 +402,97 @@ export default function Publications() {
 
       </div>
 
-      {/* Carousel Modal via Portal to escape all z-index stacking contexts */}
-      {selectedImages && createPortal(
-        <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 sm:p-8 overflow-y-auto" onClick={closeCarousel}>
-          <div className="relative w-full max-w-7xl flex items-center justify-center border border-[#3585f6] bg-[#000000] p-1 sm:p-4 shadow-[0_0_30px_rgba(53,133,246,0.3)] my-auto" onClick={(e) => e.stopPropagation()}>
-            <CornerBrackets size="w-4 h-4 sm:w-6 sm:h-6" />
-            
-            <button onClick={closeCarousel} className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white hover:text-[#3585f6] z-[100] p-1.5 sm:p-2 bg-black/80 border border-[#012f7c] hover:border-[#3585f6] hover:bg-[#3585f6]/10 transition-colors">
-              <X className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-            
-            {selectedImages.length > 1 && (
-              <button onClick={prevImg} className="absolute left-1 sm:left-4 p-1.5 sm:p-3 bg-black/80 text-white hover:text-[#3585f6] border border-[#012f7c] hover:border-[#3585f6] z-[60] transition-colors">
-                <ChevronLeft className="w-5 h-5 sm:w-8 sm:h-8" />
-              </button>
-            )}
-            
-            <img 
-              src={selectedImages[currentImgIndex]} 
-              alt="Event showcase" 
-              className="w-auto h-auto max-w-full max-h-[85vh] object-contain filter contrast-110" 
-            />
-            
-            {selectedImages.length > 1 && (
-              <button onClick={nextImg} className="absolute right-1 sm:right-4 p-1.5 sm:p-3 bg-black/80 text-white hover:text-[#3585f6] border border-[#012f7c] hover:border-[#3585f6] z-[60] transition-colors">
-                <ChevronRight className="w-5 h-5 sm:w-8 sm:h-8" />
-              </button>
-            )}
-            
-            {selectedImages.length > 1 && (
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
-                {selectedImages.map((_, i) => (
-                  <button 
-                    key={i} 
-                    onClick={(e) => { e.stopPropagation(); setCurrentImgIndex(i); }}
-                    className={`h-1.5 transition-all duration-300 ${i === currentImgIndex ? 'w-6 sm:w-8 bg-[#3585f6] shadow-[0_0_8px_#3585f6]' : 'w-2 sm:w-3 bg-[#012f7c] hover:bg-[#3585f6]/50'}`} 
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>,
+      {/* Carousel Modal via Portal */}
+      {createPortal(
+        <AnimatePresence>
+          {selectedImages && (
+            <motion.div 
+              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+              transition={{ duration: 0.4 }}
+              className="fixed inset-0 z-[999999] flex items-center justify-center bg-[#010612]/90 p-4 sm:p-8 overflow-y-auto" 
+              onClick={closeCarousel}
+            >
+              <motion.div 
+                initial={{ scale: 0.95, y: 20, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.95, y: 20, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-6xl flex flex-col items-center justify-center bg-[#030917]/80 backdrop-blur-xl border border-[#3585f6]/20 rounded-3xl shadow-[0_20px_60px_-15px_rgba(53,133,246,0.4)] my-auto overflow-hidden group/modal" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Header */}
+                <div className="w-full flex justify-between items-center px-6 py-4 border-b border-[#3585f6]/10 bg-[#000000]/40 relative z-10 shrink-0">
+                   <div className="flex items-center gap-3">
+                     <span className="w-2 h-2 rounded-full bg-[#3585f6] animate-pulse shadow-[0_0_10px_#3585f6]" />
+                     <span className="text-[11px] sm:text-xs text-white font-bold tracking-widest uppercase">VISUAL PREVIEW</span>
+                   </div>
+                   <button 
+                     onClick={closeCarousel} 
+                     className="text-zinc-400 hover:text-white hover:bg-white/10 rounded-full p-2 transition-colors cursor-pointer"
+                     aria-label="Close Preview"
+                   >
+                      <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                   </button>
+                </div>
+
+                {/* Image Area */}
+                <div className="relative w-full p-4 sm:p-12 flex items-center justify-center min-h-[50vh]">
+                  
+                  {selectedImages.length > 1 && (
+                    <button 
+                      onClick={prevImg} 
+                      className="absolute left-2 sm:left-6 p-3 bg-[#020817]/60 hover:bg-[#3585f6] backdrop-blur-md text-white border border-white/10 hover:border-transparent rounded-full z-[60] transition-all duration-300 transform sm:-translate-x-4 sm:opacity-0 sm:group-hover/modal:translate-x-0 sm:group-hover/modal:opacity-100 shadow-xl"
+                    >
+                      <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </button>
+                  )}
+
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={currentImgIndex}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      src={selectedImages[currentImgIndex]} 
+                      alt="Publication detail view" 
+                      className="w-auto h-auto max-w-full max-h-[70vh] object-contain rounded-xl shadow-2xl" 
+                    />
+                  </AnimatePresence>
+
+                  {selectedImages.length > 1 && (
+                    <button 
+                      onClick={nextImg} 
+                      className="absolute right-2 sm:right-6 p-3 bg-[#020817]/60 hover:bg-[#3585f6] backdrop-blur-md text-white border border-white/10 hover:border-transparent rounded-full z-[60] transition-all duration-300 transform sm:translate-x-4 sm:opacity-0 sm:group-hover/modal:translate-x-0 sm:group-hover/modal:opacity-100 shadow-xl"
+                    >
+                      <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </button>
+                  )}
+                </div>
+                
+                {/* Dots Footer */}
+                {selectedImages.length > 1 && (
+                  <div className="w-full flex justify-center items-center py-6 gap-2 sm:gap-3 bg-gradient-to-t from-black/80 to-transparent absolute bottom-0 z-10 pointer-events-none">
+                    {selectedImages.map((_, i) => (
+                      <button 
+                        key={i} 
+                        onClick={(e) => { e.stopPropagation(); setCurrentImgIndex(i); }}
+                        className={`h-1.5 rounded-full transition-all duration-300 pointer-events-auto ${
+                          i === currentImgIndex 
+                            ? 'w-8 sm:w-10 bg-[#3585f6] shadow-[0_0_12px_#3585f6]' 
+                            : 'w-2.5 sm:w-3 bg-zinc-600 hover:bg-zinc-400'
+                        }`} 
+                        aria-label={`Go to image ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
         document.body
       )}
     </div>

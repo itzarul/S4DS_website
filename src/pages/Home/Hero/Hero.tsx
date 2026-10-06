@@ -1,8 +1,9 @@
 import { HeroScene } from './HeroSceneView';
+
 export function Hero() {
   return (
-    <section className="hero story-card story-card--hero" aria-labelledby="hero-title">
-      <div className="hero-frame">
+    <section className="hero story-card story-card--hero relative overflow-hidden" aria-labelledby="hero-title">
+      <div className="hero-frame relative z-10 pointer-events-none">
         <div className="hero-layout">
           <aside className="rail" aria-label="Project information">
             <span className="rail-rule rail-rule-top" aria-hidden="true" />
@@ -12,7 +13,7 @@ export function Hero() {
             <span className="rail-rule rail-rule-bottom" aria-hidden="true" />
           </aside>
 
-          <div className="hero-content">
+          <div className="hero-content pointer-events-auto">
             <HeroScene />
             <div className="hero-copy">
               <p className="hero-location">{'LOC.TCET'}</p>

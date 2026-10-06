@@ -33,30 +33,30 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed z-50 transition-all duration-500 top-0 left-0 w-full sm:top-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-[90%] max-w-7xl ${
           isScrolled
-            ? 'bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 py-3 shadow-2xl shadow-blue-500/5'
-            : 'bg-transparent py-5'
+            ? 'bg-[#ffffff]/[0.02] backdrop-blur-[50px] border-b sm:border border-white/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] sm:rounded-full py-3 px-4 sm:px-8'
+            : 'bg-transparent py-5 px-4 sm:px-8'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="w-full mx-auto flex items-center justify-between">
           {/* S4DS Brand Logo */}
           <Link to="/" className="outline-none" onClick={() => setMobileMenuOpen(false)}>
             <S4DSLogo className="w-14 h-14" />
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-zinc-900/60 p-1.5 rounded-full border border-zinc-800/80 backdrop-blur-lg">
+          <nav className="hidden md:flex items-center gap-2 p-1">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
+                  className={`relative px-5 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-300 ${
                     isActive
-                      ? 'text-white'
-                      : 'text-zinc-400 hover:text-zinc-200'
+                      ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]'
+                      : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
                   {isActive && (
@@ -76,10 +76,11 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               to="/contact"
-              className="relative group px-5 py-2.5 rounded-full font-bold text-xs text-white bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:opacity-95 transition-transform hover:scale-105 shadow-xl shadow-blue-600/25 flex items-center gap-2"
+              className="relative group px-6 py-2.5 rounded-full font-bold text-xs text-white bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] backdrop-blur-md transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)] flex items-center gap-2 overflow-hidden"
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-200 animate-pulse" />
-              <span>Join S4DS</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/40 via-cyan-500/40 to-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300 animate-pulse relative z-10" />
+              <span className="relative z-10 tracking-widest uppercase">Join S4DS</span>
             </Link>
           </div>
 
