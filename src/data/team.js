@@ -145,7 +145,7 @@ export const coreTeam2026_2027 = [
   },
   {
     id: 'vice-chairperson',
-    name: 'Ms. Shraddha Singh',
+    name: 'Ms. Shradha Singh',
     role: 'Vice Chairperson',
     category: 'Core',
     bio: 'Driving operational strategies, team execution, and overarching leadership across club initiatives.',
