@@ -1,0 +1,115 @@
+.gallery-page {
+  isolation: isolate;
+}
+
+.gallery-photos-section {
+  scroll-margin-top: 8rem;
+}
+
+.gallery-glow {
+  animation: gallery-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.gallery-glow--top {
+  animation-name: gallery-drift-center;
+}
+
+.gallery-glow--left {
+  animation-delay: -7s;
+  animation-duration: 23s;
+}
+
+.gallery-glow--right {
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+
+.gallery-intro {
+  animation: gallery-rise 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.gallery-photo-card {
+  animation: gallery-rise 550ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.gallery-photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgb(0 0 0 / 0.28),
+    0 0 24px rgb(34 211 238 / 0.08);
+}
+
+.gallery-photo-card img {
+  filter: saturate(0.9);
+  transition:
+    transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    filter 500ms ease;
+}
+
+.gallery-photo-card:hover img {
+  filter: saturate(1.08);
+}
+
+.gallery-lightbox > div {
+  animation: gallery-lightbox-in 260ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes gallery-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gallery-drift {
+  from {
+    translate: -1.5% -1%;
+    scale: 0.98;
+  }
+  to {
+    translate: 1.5% 1%;
+    scale: 1.04;
+  }
+}
+
+@keyframes gallery-drift-center {
+  from {
+    transform: translateX(-50%) translateY(-1%);
+    scale: 0.98;
+  }
+  to {
+    transform: translateX(-50%) translateY(1%);
+    scale: 1.04;
+  }
+}
+
+@keyframes gallery-lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-page *,
+  .gallery-page *::before,
+  .gallery-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
